@@ -1,0 +1,148 @@
+.payment-summary-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.payment-summary {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  animation: payment-summary-slide 0.25s ease-out;
+}
+
+@keyframes payment-summary-slide {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.payment-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.payment-summary__header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.payment-summary__close {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0;
+}
+
+.payment-summary__close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.payment-summary__body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.payment-summary__lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.payment-summary__line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+  color: #475569;
+}
+
+.payment-summary__line span:last-child {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.payment-summary__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e2e8f0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.payment-summary__delivery {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.payment-summary__delivery-title {
+  font-weight: 600;
+  color: #475569;
+  margin: 0 0 0.25rem;
+}
+
+.payment-summary__delivery p {
+  margin: 0 0 0.15rem;
+}
+
+.payment-summary__pay-error {
+  margin: 0 1.5rem;
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.payment-summary__actions {
+  padding: 1.25rem 1.5rem;
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0));
+}
+
+.payment-summary__pay {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+}

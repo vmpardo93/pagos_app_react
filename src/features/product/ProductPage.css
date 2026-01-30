@@ -1,0 +1,212 @@
+.product-page {
+  min-height: 100vh;
+  padding: 2rem 1.5rem 3rem;
+  background: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+}
+
+.product-page__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-page__title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.product-page__subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.product-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-page__grid--loading {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 0 0 2px #b0f2ae;
+}
+
+.product-card__image-wrap {
+  aspect-ratio: 4 / 3;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__description {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.product-card__price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.product-card__btn {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+.product-card__btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+/* Skeleton */
+.product-card--skeleton .product-card__body {
+  padding: 1.25rem;
+}
+
+.product-card__image--skeleton {
+  background: linear-gradient(
+    90deg,
+    #e2e8f0 25%,
+    #f1f5f9 50%,
+    #e2e8f0 75%
+  );
+  background-size: 200% 100%;
+  animation: product-page__shimmer 1.2s ease-in-out infinite;
+}
+
+.product-card__title-skeleton,
+.product-card__price-skeleton {
+  height: 1rem;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #e2e8f0 25%,
+    #f1f5f9 50%,
+    #e2e8f0 75%
+  );
+  background-size: 200% 100%;
+  animation: product-page__shimmer 1.2s ease-in-out infinite;
+}
+
+.product-card__title-skeleton {
+  width: 85%;
+  margin-bottom: 0.75rem;
+}
+
+.product-card__price-skeleton {
+  width: 40%;
+  margin-top: auto;
+}
+
+@keyframes product-page__shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Empty & Error */
+.product-page__empty,
+.product-page__error {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.product-page__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-page__error-icon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+.product-page__error p,
+.product-page__empty p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.product-page__error p {
+  color: #0f172a;
+}

@@ -1,0 +1,33 @@
+.wompi-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.wompi-loading__spinner {
+  width: 56px;
+  height: 56px;
+  border: 4px solid #e2e8f0;
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: wompi-loading-spin 0.9s linear infinite;
+}
+
+.wompi-loading__text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+@keyframes wompi-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

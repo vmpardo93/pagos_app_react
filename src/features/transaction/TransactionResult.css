@@ -1,0 +1,96 @@
+.transaction-result-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.transaction-result {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.transaction-result__icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.transaction-result__icon--success {
+  background: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+.transaction-result__icon--failed {
+  background: #dc2626;
+  color: #fff;
+}
+
+.transaction-result__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.75rem;
+}
+
+.transaction-result__number {
+  font-size: 0.9375rem;
+  color: #475569;
+  margin: 0 0 1.25rem;
+}
+
+.transaction-result__number strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.transaction-result__wompi {
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.transaction-result__wompi-row {
+  font-size: 0.9375rem;
+  color: #475569;
+  margin: 0 0 0.5rem;
+}
+
+.transaction-result__wompi-row:last-child {
+  margin-bottom: 0;
+}
+
+.transaction-result__wompi-row strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.transaction-result__error {
+  font-size: 0.9375rem;
+  color: #dc2626;
+  margin: 0 0 1.25rem;
+}
+
+.transaction-result__btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+}
