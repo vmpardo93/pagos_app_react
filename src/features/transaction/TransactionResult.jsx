@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import { clearCurrentTransaction } from './transactionSlice';
 import { resetCheckout } from '../../features/checkout/checkoutSlice';
+import { fetchProducts } from '../../features/product/productSlice';
 import './TransactionResult.css';
 
 const TransactionResult = () => {
@@ -22,6 +23,7 @@ const TransactionResult = () => {
   const handleClose = () => {
     dispatch(clearCurrentTransaction());
     dispatch(resetCheckout());
+    dispatch(fetchProducts());
   };
 
   const isSuccess = status === 'SUCCESS';

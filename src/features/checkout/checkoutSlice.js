@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+export const checkoutInitialState = {
   items: [],
   cardInfo: {
     number: '',
@@ -20,7 +20,7 @@ const initialState = {
 
 const checkoutSlice = createSlice({
   name: 'checkout',
-  initialState,
+  initialState: checkoutInitialState,
   reducers: {
     addToCheckout: (state, action) => {
       state.items = [action.payload]
@@ -31,7 +31,11 @@ const checkoutSlice = createSlice({
     closeSummary: (s) => { s.showSummary = false },
     setCardInfo: (s, a) => { s.cardInfo = { ...s.cardInfo, ...a.payload } },
     setDeliveryInfo: (s, a) => { s.deliveryInfo = { ...s.deliveryInfo, ...a.payload } },
-    resetCheckout: () => initialState
+    resetCheckout: () => ({
+      ...checkoutInitialState,
+      cardInfo: { ...checkoutInitialState.cardInfo },
+      deliveryInfo: { ...checkoutInitialState.deliveryInfo },
+    })
   }
 })
 

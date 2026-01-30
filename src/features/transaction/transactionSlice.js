@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../services/api';
+import { api, completePayment as completePaymentApi } from '../../services/api';
 import { tokenizeCard } from '../../services/wompi';
 
 export const createPayment = createAsyncThunk(
@@ -18,6 +18,24 @@ export const createPayment = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.message ?? err.message ?? 'Error al procesar el pago'
+      );
+    }
+  }
+);
+
+/**
+ * Notifica al backend el resultado de Wompi para que actualice la transacción,
+ * asigne entrega y actualice stock.
+ */
+export const confirmPaymentInBackend = createAsyncThunk(
+  'transaction/confirmPaymentInBackend',
+  async ({ transactionId, wompiResult }, { rejectWithValue }) => {
+    try {
+      const { data } = await completePaymentApi(transactionId, wompiResult);
+      return data;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.message ?? err.message ?? 'Error al confirmar pago'
       );
     }
   }
@@ -115,6 +133,12 @@ const transactionSlice = createSlice({
         state.status = 'FAILED';
         state.error = action.payload ?? 'Error en API Wompi';
         state.wompiTransaction = null;
+      })
+      .addCase(confirmPaymentInBackend.fulfilled, () => {
+        // Backend actualizó transacción, entrega y stock
+      })
+      .addCase(confirmPaymentInBackend.rejected, () => {
+        // No cambiamos estado; el usuario ya vio el resultado de Wompi
       });
   },
 });

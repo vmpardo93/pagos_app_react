@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/Button';
 import { closeSummary, resetCheckout } from './checkoutSlice';
-import { createPayment, createWompiTransaction, setStatus } from '../transaction/transactionSlice';
+import { createPayment, createWompiTransaction, confirmPaymentInBackend, setStatus } from '../transaction/transactionSlice';
 import './PaymentSummary.css';
 
 const BASE_FEE = 2.5;
@@ -33,7 +33,7 @@ export default function PaymentSummary() {
     if (items.length === 0 || !cardInfo?.number) return;
     setPayError(null);
     try {
-      await dispatch(
+      const paymentResult = await dispatch(
         createPayment({
           product_id: items[0].id,
           quantity: 1,
@@ -43,7 +43,11 @@ export default function PaymentSummary() {
       dispatch(closeSummary());
       dispatch(setStatus('loading_wompi'));
       try {
-        await dispatch(createWompiTransaction(cardInfo)).unwrap();
+        const wompiResult = await dispatch(createWompiTransaction(cardInfo)).unwrap();
+        const transactionId = paymentResult?.id ?? paymentResult?.transaction_id ?? paymentResult?.transaction_number;
+        if (transactionId && wompiResult) {
+          dispatch(confirmPaymentInBackend({ transactionId, wompiResult }));
+        }
       } catch {
         // status = FAILED y error se muestran en TransactionResult
       }
